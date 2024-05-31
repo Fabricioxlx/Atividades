@@ -23,7 +23,7 @@ public class conectaDAO {
         try {
         
             conn = DriverManager.getConnection("jdbc:mysql://localhost/atividade01", "root", "Sport-123");
-            JOptionPane.showMessageDialog(null, "Conectar() sucesso!");
+            System.out.println("Conectar() Sucesso!");
             
         } catch (SQLException erro){
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
