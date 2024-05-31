@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -112,7 +116,24 @@ public class vendasVIEW extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public void listarVendas(){
+        ProdutosDAO pdao = new ProdutosDAO();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setNumRows(0);
+        
+        ArrayList<ProdutosDTO> listagem = pdao.listarProdutosVendidos();
+        
+        for(int i = 0; i < listagem.size(); i++){
+            modelo.addRow(new Object[]{
+                listagem.get(i).getId(),
+                listagem.get(i).getNome(),
+                listagem.get(i).getValor(),
+                listagem.get(i).getStatus()
+            });
+            jTable1.setModel(modelo);
+            jScrollPane1.setViewportView(jTable1);
+        }
+    }
     /**
      * @param args the command line arguments
      */
